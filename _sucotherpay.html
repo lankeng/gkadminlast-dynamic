@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="lib/html5shiv.js"></script>
+		<script type="text/javascript" src="lib/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" href="css/jquery.page.css">
+		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.page.js"></script>
+		<!--[if IE 6]>
+		<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+		<script>DD_belatedPNG.fix('*');</script>
+		<![endif]-->
+		<title>杂费已缴费管理</title>
+	</head>
+	<body>
+		<nav class="breadcrumb protab">
+			<i class="Hui-iconfont">&#xe67f;</i>
+			首页
+			<span class="c-gray en">&gt;</span>
+			缴费管理
+			<span class="c-gray en">&gt;</span>
+			杂费已缴费管理
+			<a class="btn btn-primary radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+			 title="刷新">
+				<i class="Hui-iconfont">&#xe68f;</i>
+			</a>
+		</nav>
+		<div class="page-container">
+			<div class="text-l">
+				<!-- 日期时间段：
+				<input type="text" class="input-text Wdate sestartime" style="width:120px;" id="d4321" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d4322\',{d:-1});}'})" />
+				-
+				<input type="text" class="input-text Wdate sendtime" style="width:120px;" id="d4322" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4321\',{d:1});}'})" /> -->
+				<span class="allfloortext">杂费类型：</span>
+				<span class="select-box size-S selfloora ml-10">
+					<select class="select seyuanqu" size="1" name="demo1" id="selpaytype">
+						<!-- <option value="">缴费类型</option>
+						<option value="南苑">南苑</option>
+						<option value="博苑">博苑</option>
+						<option value="雅苑">雅苑</option> -->
+					</select>
+				</span>
+
+				<!-- <span class="select-box size-S selfloor ml-10">
+					<select class="select sepaystatus" size="1" name="demo1">
+						<option value="" disabled="disabled">缴费状态</option>
+						<option value="true">已缴费</option>
+						<option value="false">未缴费</option>
+					</select>
+				</span> -->
+				<!-- <input type="text" name="" id="" placeholder=" 宿舍编号" style="width:250px" class="input-text ml-10 sefloor"> -->
+				<!-- <button name="" id="" class="btn btn-primary radius searchwater" type="submit"><i class="Hui-iconfont">&#xe683;</i>
+					查询</button> -->
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20 protable-deline">
+				<span class="l">
+					<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+						<i class="Hui-iconfont">&#xe6e2;</i>
+						批量删除
+					</a>
+					<!-- <a class="btn btn-primary radius" onClick="modaldemo()">
+						<i class="Hui-iconfont">&#xe600;</i>
+						添加宿舍缴费
+					</a> -->
+				</span>
+				<span class="r">共有数据：
+					<strong>54</strong>
+					条
+				</span>
+			</div>
+			<div class="mt-20">
+				<!-- <div class="toupfile">
+					<button href="javascript:void(0);" class="ainput">
+						选择文件
+						<input type="file" id="file" name="document[file]">
+					</button>
+					<input type="text" id="file_name" readonly="readonly" value="" />
+					<button type="button" class="upfilebtn">导入表格</button>
+				</div> -->
+				<form action="http://172.16.1.79/api/Pay/ExamRoomExportPayTable" method="get">
+					<input type="hidden" class="excel-type" name="type" value="" />
+					<input type="hidden" class="excel-status" name="status" value="true" />
+					<input type="submit" value="导出表格" class="showout-excel" />
+				</form>
+				<table class="table table-border table-bg table-hover table-sort protable protable-hover">
+					<thead>
+						<tr class="text-c">
+							<th width="40"><input name="" type="checkbox" value=""></th>
+							<th width="80">学号</th>
+							<th width="100">姓名</th>
+							<th width="100">缴费类型</th>
+							<th width="100">订单生成时间</th>
+							<th width="60">已缴费金额</th>
+							<th width="100">操作</th>
+						</tr>
+					</thead>
+					<tbody id="tbodywater">
+						<!-- <tr class="text-c">
+							<td><input name="" type="checkbox" value=""></td>
+							<td>学号</td>
+							<td>姓名</td>
+							<td>
+								缴费类型
+							</td>
+							<td class="text-c">
+								订单生成时间
+							</td>
+							<td>
+								缴费金额
+							</td>
+							<td class="td-manage protab-icon">
+								<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除">
+									<i class="Hui-iconfont protab-iconcolora">&#xe6e2;</i>
+								</a>
+							</td>
+						</tr> -->
+					</tbody>
+				</table>
+				<div id="page"></div>
+			</div>
+		</div>
+
+		<!--_footer 作为公共模版分离出去-->
+		<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+		<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+		<!--/_footer 作为公共模版分离出去-->
+
+		<!--请在下方写此页面业务相关的脚本-->
+		<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+		<script src="js/session.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				var sessiontoken = $.session.get('setoken')
+				if (sessiontoken == undefined) {
+					window.location.href = "_login.html";
+				}
+
+				//改变杂费类型
+				$("#selpaytype").change(function() {
+					var selpaytype = $("#selpaytype").val()
+					console.log(selpaytype)
+					$(".excel-type").val(selpaytype)
+					$.ajax({
+						type: "GET",
+						url: "http://172.16.1.79/api/Pay/SelectPaidData",
+						data: {
+							type: selpaytype,
+							sign: true,
+							page: 1
+						},
+						beforeSend: function(request) {
+							//将session中的token信息放于请求头中
+							request.setRequestHeader("Authorization", sessiontoken);
+						},
+						dataType: "json",
+						success: function(res) {
+							$("#tbodywater").html('');
+							console.log(res)
+							if (res.Status == true) {
+								$("#page").Page({
+									totalPages: res['Data'].page, //分页总数
+									liNums: 5, //分页的数字按钮数(建议取奇数)
+									activeClass: 'activP', //active 类样式定义
+									firstPage: '首页', //first button name
+									lastPage: '末页', //last button name
+									prv: '<<', //prev button name
+									next: '>>', //next button name
+									hasFirstPage: true, //whether has first button
+									hasLastPage: true, //whether has last button
+									hasPrv: true, //whether has prev button
+									hasNext: true, //whether has next button
+									callBack: function(page) {
+										console.log(page)
+										html = '';
+										$("#tbodywater").html(html);
+										$.ajax({
+											type: 'GET',
+											url: 'http://172.16.1.79/api/Pay/SelectPaidData',
+											dataType: 'json',
+											beforeSend: function(request) {
+												//将session中的token信息放于请求头中
+												request.setRequestHeader("Authorization", sessiontoken);
+											},
+											data: {
+												type: selpaytype,
+												sign: true,
+												page: page
+											},
+											success: function(res) {
+												if (res.Status == true) {
+													$("#tbodywater").html('');
+													console.log(res)
+													var date = res['Data']['pageList'];
+													var htmlc = "";
+													var serviceStatu = "";
+													for (var i = 0; i < date.length; i++) {
+														htmlc += "<tr class='text-c'><td><input name='tag' type='checkbox' value='" + date[i].id +
+															"'></td>" +
+															"<td>" + date[i].xh + "</td>" +
+															"<td>" + date[i].name + "</td>" +
+															"<td>" + date[i].type + "</td>" +
+															"<td>" + date[i].statusTime + "</td>" +
+															"<td>" + date[i].needToPay + "</td>" +
+															"<td class='td-manage protab-icon'>" +
+															"<a style='text-decoration:none' class='ml-5' onClick='picture_del(this,this.type)' type='" +
+															date[
+																i].id +
+															"' href='javascript:;' title='删除'><i class='Hui-iconfont protab-iconcolora'>&#xe6e2;</i></a></td>" +
+															"</tr>"
+													}
+													$("#tbodywater").html(htmlc);
+												} else {
+													$.Huimodalalert(res.Message, 1000);
+												}
+											},
+											error: function() {
+												$.Huimodalalert('网络连接错误！', 1000);
+											}
+										})
+									}
+								});
+								var date = res['Data']['pageList'];
+								var htmlc = "";
+								for (var i = 0; i < date.length; i++) {
+									htmlc += "<tr class='text-c'><td><input name='tag' type='checkbox' value='" + date[i].id + "'></td>" +
+										"<td>" + date[i].xh + "</td>" +
+										"<td>" + date[i].name + "</td>" +
+										"<td>" + date[i].type + "</td>" +
+										"<td>" + date[i].statusTime + "</td>" +
+										"<td>" + date[i].needToPay + "</td>" +
+										"<td class='td-manage protab-icon'>" +
+										"<a style='text-decoration:none' class='ml-5' onClick='picture_del(this,this.type)' type='" + date[
+											i].id +
+										"' href='javascript:;' title='删除'><i class='Hui-iconfont protab-iconcolora'>&#xe6e2;</i></a></td>" +
+										"</tr>"
+								}
+
+								$("#tbodywater").html(htmlc);
+							} else {
+								$.Huimodalalert(res.Message, 1000);
+							}
+						},
+						error: function(data) {
+							$.Huimodalalert('网络连接错误！', 1000);
+							if (data.status == '401') {
+								window.parent.location.href = "_login.html";
+							}
+						}
+					})
+				})
+
+				$.ajax({
+					type: "GET",
+					url: "http://172.16.1.79/api/Pay/SelectOnlyMix",
+					data: {},
+					beforeSend: function(request) {
+						//将session中的token信息放于请求头中
+						request.setRequestHeader("Authorization", sessiontoken);
+					},
+					dataType: "json",
+					success: function(ret) {
+						console.log(ret)
+						if (ret.Status == true) {
+							var date = ret['Data'];
+							var html = "";
+							for (var i = 0; i < date.length; i++) {
+								html += "<option value='" + date[i].type + "'>" + date[i].type + "</option>"
+							}
+
+							$("#selpaytype").html(html);
+							$(".excel-type").val(ret['Data'][0].type)
+							$.ajax({
+								type: "GET",
+								url: "http://172.16.1.79/api/Pay/SelectPaidData",
+								data: {
+									type: ret['Data'][0].type,
+									sign: true,
+									page: 1
+								},
+								beforeSend: function(request) {
+									//将session中的token信息放于请求头中
+									request.setRequestHeader("Authorization", sessiontoken);
+								},
+								dataType: "json",
+								success: function(res) {
+									console.log(res)
+									if (res.Status == true) {
+										$("#page").Page({
+											totalPages: res['Data'].page, //分页总数
+											liNums: 5, //分页的数字按钮数(建议取奇数)
+											activeClass: 'activP', //active 类样式定义
+											firstPage: '首页', //first button name
+											lastPage: '末页', //last button name
+											prv: '<<', //prev button name
+											next: '>>', //next button name
+											hasFirstPage: true, //whether has first button
+											hasLastPage: true, //whether has last button
+											hasPrv: true, //whether has prev button
+											hasNext: true, //whether has next button
+											callBack: function(page) {
+												console.log(page)
+												html = '';
+												$("#tbodywater").html(html);
+												$.ajax({
+													type: 'GET',
+													url: 'http://172.16.1.79/api/Pay/SelectPaidData',
+													dataType: 'json',
+													beforeSend: function(request) {
+														//将session中的token信息放于请求头中
+														request.setRequestHeader("Authorization", sessiontoken);
+													},
+													data: {
+														type: ret['Data'][0].type,
+														sign: true,
+														page: page
+													},
+													success: function(res) {
+														if (res.Status == true) {
+															$("#tbodywater").html('');
+															console.log(res)
+															var date = res['Data']['pageList'];
+															var htmlc = "";
+															var serviceStatu = "";
+															for (var i = 0; i < date.length; i++) {
+																htmlc += "<tr class='text-c'><td><input name='tag' type='checkbox' value='" + date[i].id +
+																	"'></td>" +
+																	"<td>" + date[i].xh + "</td>" +
+																	"<td>" + date[i].name + "</td>" +
+																	"<td>" + date[i].type + "</td>" +
+																	"<td>" + date[i].statusTime + "</td>" +
+																	"<td>" + date[i].needToPay + "</td>" +
+																	"<td class='td-manage protab-icon'>" +
+																	"<a style='text-decoration:none' class='ml-5' onClick='picture_del(this,this.type)' type='" +
+																	date[
+																		i].id +
+																	"' href='javascript:;' title='删除'><i class='Hui-iconfont protab-iconcolora'>&#xe6e2;</i></a></td>" +
+																	"</tr>"
+															}
+															$("#tbodywater").html(htmlc);
+														} else {
+															$.Huimodalalert(res.Message, 1000);
+														}
+													},
+													error: function() {
+														$.Huimodalalert('网络连接错误！', 1000);
+													}
+												})
+											}
+										});
+										var date = res['Data']['pageList'];
+										var htmlc = "";
+										for (var i = 0; i < date.length; i++) {
+											htmlc += "<tr class='text-c'><td><input name='tag' type='checkbox' value='" + date[i].id + "'></td>" +
+												"<td>" + date[i].xh + "</td>" +
+												"<td>" + date[i].name + "</td>" +
+												"<td>" + date[i].type + "</td>" +
+												"<td>" + date[i].statusTime + "</td>" +
+												"<td>" + date[i].needToPay + "</td>" +
+												"<td class='td-manage protab-icon'>" +
+												"<a style='text-decoration:none' class='ml-5' onClick='picture_del(this,this.type)' type='" + date[
+													i].id +
+												"' href='javascript:;' title='删除'><i class='Hui-iconfont protab-iconcolora'>&#xe6e2;</i></a></td>" +
+												"</tr>"
+										}
+
+										$("#tbodywater").html(htmlc);
+									} else {
+										$.Huimodalalert(res.Message, 1000);
+									}
+								},
+								error: function(data) {
+									$.Huimodalalert('网络连接错误！', 1000);
+									if (data.status == '401') {
+										window.parent.location.href = "_login.html";
+									}
+								}
+							})
+						} else {
+							$.Huimodalalert('读取数据失败！', 1000);
+						}
+					},
+					error: function(data) {
+						$.Huimodalalert('网络连接错误！', 1000);
+						if (data.status == '401') {
+							window.parent.location.href = "_login.html";
+						}
+					}
+				})
+			})
+			$('.table-sort').dataTable({
+				"ordering": false, // 禁止排序
+				"lengthChange": false,
+				"paging": false,
+
+			});
+
+			function lookmodel(data) {
+				$(".look-model").modal("show")
+				var datashow = JSON.parse(data)
+				console.log(datashow)
+				var serviceStatus = ''
+				if (datashow.payStatus == true) {
+					var serviceStatu = '已缴费'
+				} else {
+					var serviceStatu = '未缴费'
+				}
+				$(".lookyuanqu").html(datashow.buildingNAME);
+				$(".lookrom").html(datashow.dormitoryID);
+				$(".startime").html(datashow.startTime);
+				$(".endtime").html(datashow.endTime);
+				$(".allnum").html(datashow.byds);
+				$(".usenum").html(datashow.bysjyd);
+				$(".ceds").html(datashow.ceds);
+				$(".needtopay").html(datashow.needToPay);
+				$(".free").html(datashow.free);
+				$(".paystatus").html(serviceStatu);
+				// $(".paynum").html(datashow.xh);
+				// $(".payname").html(datashow.payerName);
+				// $(".paytime").html(datashow.payTime);
+			}
+
+			function modaldemo() {
+				$("#modal-demo").modal("show")
+			}
+
+			function remodaldemo(data) {
+				$("#remodal-demo").modal("show")
+				var datashow = JSON.parse(data)
+				console.log(datashow)
+				var serviceStatus = ''
+				if (datashow.payStatus == true) {
+					var serviceStatu = '已缴费'
+				} else {
+					var serviceStatu = '未缴费'
+				}
+				$(".restartime").val(datashow.startTime);
+				$(".rendtime").val(datashow.endTime);
+				$(".reallnum").val(datashow.byds);
+				$.session.set('datashow', JSON.stringify(datashow));
+			}
+
+			function picture_del(obj, id) {
+				var sessiontoken = $.session.get('setoken')
+				layer.confirm('确认要删除吗？', function(index) {
+					//console.log(obj)
+					$.ajax({
+						type: 'GET',
+						url: 'http://172.16.1.79/api/Pay/DeletePayTable',
+						dataType: 'json',
+						beforeSend: function(request) {
+							//将cookie中的token信息放于请求头中
+							request.setRequestHeader("Authorization", sessiontoken);
+						},
+						data: {
+							id: id
+						},
+						success: function(data) {
+							console.log(data)
+							if (data.Status == true) {
+								layer.msg('已删除!', {
+									icon: 1,
+									time: 1000
+								});
+								// setTimeout(function() {
+								// 	window.location.reload();
+								// }, 1000);
+								$(obj).parents("tr").remove();
+							} else {
+								$.Huimodalalert('删除失败！', 1000);
+							}
+						},
+						error: function() {
+							$.Huimodalalert('网络连接错误！', 1000);
+						},
+					});
+				});
+			}
+
+			function datadel() {
+				var sessiontoken = $.session.get('setoken');
+				var checkedbox = $("input[name='tag']:checked");
+				if (checkedbox.length == 0) {
+					$.Huimodalalert('请选择要删除的标签！', 1000);
+				} else {
+					if (confirm("确定要删除吗？")) {
+						var alldel = []
+						for (var i = 0; i < checkedbox.length; i++) {
+							alldel.push(checkedbox[i].value)
+						}
+						console.log(alldel)
+						$.ajax({
+							url: 'http://172.16.1.79/api/Pay/DeleteMorePayTable',
+							type: 'post',
+							dataType: 'json',
+							//contentType:'application/json',
+							beforeSend: function(request) {
+								//将cookie中的token信息放于请求头中
+								request.setRequestHeader("Authorization", sessiontoken);
+							},
+							data: {
+								payTables: JSON.stringify(alldel)
+							},
+							success: function(data) {
+								console.log(data)
+								if (data.Status == true) {
+									layer.msg('已删除!', {
+										icon: 1,
+										time: 1000
+									});
+									setTimeout(function() {
+										window.location.reload();
+									}, 1000);
+								} else {
+									$.Huimodalalert('删除失败！', 1000);
+								}
+							},
+							error: function(data) {
+								$.Huimodalalert('网络连接错误！', 1000);
+							},
+						});
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

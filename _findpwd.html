@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="lib/html5shiv.js"></script>
+		<script type="text/javascript" src="lib/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+		<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link href="lib/lightbox2/2.8.1/css/lightbox.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+		<script src="static/h-ui/js/H-ui.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--[if IE 6]>
+		<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+		<script>DD_belatedPNG.fix('*');</script>
+		<![endif]-->
+		<title>修改密码</title>
+	</head>
+	<body style="font-size: 14px;">
+		<nav class="breadcrumb protab"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 账号管理
+			<span class="c-gray en">&gt;</span> 修改密码管理 <a class="btn btn-primary radius r" style="line-height:1.6em;margin-top:3px"
+			 href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+		<div class="page-container findpwd-con">
+			<form action="" method="post">
+				<div class="findpwd-ipta">
+					<span class="star">*</span><span>原密码：</span><input type="password" class="input-text radius size-L pwd-oldipt oldpwd"
+					 placeholder="请输入原密码" />
+				</div>
+				<div class="mt-20">
+					<span class="star">*</span><span class="mr-30">设置新密码：</span><input type="password" class="input-text radius size-L pwd-oldiptb newpwd"
+					 placeholder="请输入新密码" />
+				</div>
+				<div class="mt-20">
+					<span class="star">*</span><span class="mr-15">确认密码：</span><input type="password" class="input-text radius size-L pwd-oldipta againpwd"
+					 placeholder="请再次输入新密码" />
+				</div>
+				<div class="mt-30">
+					<button type="button" class="btn btn-primary findpwd-btn size-L">修改</button>
+				</div>
+			</form>
+		</div>
+		<script src="js/session.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var sessiontoken = $.session.get('setoken')
+				//console.log(sessiontoken)
+				if (sessiontoken == undefined) {
+					window.location.href = "_login.html";
+				}
+				$(".findpwd-btn").click(function() {
+					var oldpwd = $(".oldpwd").val();
+					var newpwd = $(".newpwd").val();
+					var againpwd = $(".againpwd").val();
+					//console.log(oldpwd, newpwd, againpwd)
+					if (oldpwd != '' && newpwd != '' && againpwd != '') {
+						layer.confirm('您确认要修改密码吗？', function() {
+							$(".layui-layer").css("display","none");
+							$(".layui-layer-shade").css("display","none")
+							$.ajax({
+								url: 'http://172.16.1.79/api/Token/ModifyThePassword',
+								dataType: "json",
+								type: "POST",
+								data: {
+									originalPassword: oldpwd,
+									newPassword: newpwd,
+									surePassword: againpwd
+								},
+								beforeSend: function(request) {
+									//将cookie中的token信息放于请求头中
+									request.setRequestHeader("Authorization", sessiontoken);
+								},
+								success: function(res) {
+									//console.log(res)
+									if(res.Status == true){
+										layer.msg(res.Message, {
+											icon: 1,
+											time: 1000
+										});
+										setTimeout(function() {
+											window.parent.location.href = "_login.html";
+										}, 1000);
+									}else{
+										$.Huimodalalert(res.Message, 1500);
+									}
+								},
+								error: function(data) {
+									$.Huimodalalert('网络连接错误！', 1000);
+									if(data.status == '401'){
+										window.parent.location.href = "_login.html";
+									}
+								},
+							})
+						})
+					}else{
+						$.Huimodalalert('任意一项不得为空！', 1000);
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,329 @@
+body {
+	font-size: 16px;
+}
+
+.allimg {
+	width: 100%;
+	height: 100%;
+}
+
+.index-top {
+	background-color: #666666;
+}
+
+.Hui-aside-bac {
+	background: none;
+	/* border-right: 1px solid #000000; */
+}
+
+/* .Hui-aside-con{
+	border-bottom: 1px solid #000000 !important;
+} */
+.page-container-welcome {
+	height: 700px;
+}
+
+.navbar .logo {
+	height: 50px;
+	line-height: 50px;
+}
+
+.navbar-logo {
+	font-size: 20px;
+}
+
+.navbar-nav>ul>li {
+	line-height: 50px;
+	font-size: 16px;
+}
+
+.Hui-aside {
+	top: 50px;
+}
+
+.Hui-article-box {
+	top: 50px;
+}
+
+.Hui-aside .menu_dropdown dt {
+	line-height: 50px;
+}
+
+.Hui-aside .menu_dropdown dd li a {
+	line-height: 47px;
+}
+
+.welcome {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+}
+
+.protab {
+	font-size: 14px;
+}
+
+.selfloor {
+	width: 85px;
+}
+.selfloora {
+	width: 150px;
+}
+.protable thead th {
+	background-color: #f5f5f5;
+}
+
+.protable-deline {
+	background-color: #f5f5f5;
+}
+
+.protable-hover tbody tr:hover td {
+	background-color: #DFF0D8;
+}
+
+.protab-icon a {
+	font-size: 20px;
+}
+
+.protab-state {
+	width: 200px;
+}
+
+.protab-iconcolor {
+	color: #1E06F5;
+}
+
+.protab-iconcolora {
+	color: red;
+}
+
+.water-addfloor {
+	width: 100px;
+	padding: 0 5px;
+}
+
+.water-addhome {
+	width: 300px;
+}
+
+.water-addstate {
+	width: 100px;
+	margin-left: 47px;
+	padding: 0 5px;
+}
+
+.allfloortext {
+	position: relative;
+	top: 2px;
+}
+
+.pwd-oldipt {
+	width: 300px;
+	position: relative;
+	left: 15px;
+}
+
+.pwd-oldipta {
+	width: 300px;
+}
+
+.pwd-oldiptb {
+	width: 300px;
+	position: relative;
+	left: -15px;
+}
+
+.star {
+	color: red;
+}
+
+.findpwd-btn {
+	width: 300px;
+}
+
+.findpwd-btn:hover {
+	background-color: #E74C3C;
+}
+
+.findpwd-con {
+	text-align: center;
+	font-size: 16px;
+}
+
+.findpwd-ipta {
+	margin-top: 100px
+}
+
+.dataTables_filter {
+	display: none;
+}
+
+/* .Hui-aside .menu_dropdown dt .Hui-iconfont{
+	color: #666666;
+}
+.Hui-iconfont menu_dropdown-arrow{
+	color: #666666;
+} */
+.lb-number {
+	display: none !important;
+}
+
+.loginout a:hover {
+	background: none !important;
+}
+
+.dataTables_info {
+	display: none;
+}
+
+.toindex:hover {
+	background: #e74c3c;
+}
+
+.toindex {
+	background-color: #005377;
+	color: #fff;
+	padding: 11px;
+	outline: none;
+	border: none;
+	font-size: 17px;
+	width: 50%;
+	cursor: pointer;
+	margin-top: 5px;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	text-align: center;
+}
+
+.warn-text {
+	font-size: 12px;
+	color: red;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.showout-excel {
+	margin-bottom: 20px;
+	float: right;
+	background-color: #5a98de;
+	border: none;
+	width: 95px;
+	height: 35px;
+	color: #ffffff;
+	border-radius: 5px;
+}
+
+.toupfile {
+	float: left;
+}
+
+.upfilebtn {
+	background-color: #5a98de;
+	border: none;
+	width: 95px;
+	height: 35px;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/*样式1*/
+/* .a-upload {
+	width: 95px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	position: relative;
+	cursor: pointer;
+	color: #888;
+	background: #fafafa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+	*display: inline;
+	*zoom: 1
+}
+
+.a-upload input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer
+}
+
+.a-upload:hover {
+	color: #444;
+	background: #eee;
+	border-color: #ccc;
+	text-decoration: none
+} */
+#file_name {
+	width: 200px;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+
+.ainput {
+	text-align: center;
+	display: inline-block;
+	/*具有行内元素的视觉，块级元素的属性 宽高*/
+	overflow: hidden;
+	/*去掉的话，输入框也可以点击*/
+	position: relative;
+	/*相对定位，为 #file 的绝对定位准备*/
+	background-color: #dd514c;
+	border: none;
+	width: 95px;
+	height: 35px;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+
+#file {
+	opacity: 0;
+	/*设置此控件透明度为零，即完全透明*/
+	filter: alpha(opacity=0);
+	/*设置此控件透明度为零，即完全透明针对IE*/
+	font-size: 100px;
+	position: absolute;
+	/*绝对定位，相对于 .input */
+	top: 0;
+	right: 0;
+}
+
+.paytypecs{
+	margin-left: 79px;
+}
+
+.paytypecsa{
+	margin-left: 47px;
+}
+
+.paytypecsb{
+	margin-left: 111px;
+}
+
+.waterelecs{
+	margin-left: 85px;
+}
+
+.waterelecsa{
+	margin-left: 46px;
+}
+
+.waterelecsb{
+	margin-left: 21px;
+}
